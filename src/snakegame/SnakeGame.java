@@ -23,8 +23,6 @@ public class SnakeGame extends JFrame implements Runnable {
         pack();
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        s.setInGame(true);
     }
     
     public static void main(String[] args) {

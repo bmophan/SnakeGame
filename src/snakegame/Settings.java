@@ -12,6 +12,7 @@ class Settings {
     private final int[] x;
     private final int[] y;
     
+    private int sSpeed;
     private int sLength;
     private int apple_x;
     private int apple_y;
@@ -66,6 +67,13 @@ class Settings {
     }
     public void setY(int pos, int y) {
         this.y[pos] = y;
+    }
+    
+    public int getSSpeed() {
+        return sSpeed;
+    }
+    public void setSSpeed(int sSpeed) {
+        this.sSpeed = sSpeed;
     }
     
     public int getSLength() {

@@ -33,6 +33,8 @@ class Window extends JPanel implements ActionListener {
     }
     
     private void initGame() {
+        s.setInGame(true);
+        s.setSSpeed(140);
         s.setSLength(3);
         
         for (int i = 0; i < s.getSLength(); i++) {
@@ -47,7 +49,7 @@ class Window extends JPanel implements ActionListener {
         
         locateApple();
 
-        s.setTimer(new Timer(140, this));
+        s.setTimer(new Timer(s.getSSpeed(), this));
         s.getTimer().start();
     }
     
