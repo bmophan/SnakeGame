@@ -35,6 +35,7 @@ class Window extends JPanel implements ActionListener {
     private void initGame() {
         s.setInGame(true);
         s.setSSpeed(140);
+        s.setScore(0);
         s.setSLength(3);
         
         for (int i = 0; i < s.getSLength(); i++) {
