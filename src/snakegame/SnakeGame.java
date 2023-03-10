@@ -15,17 +15,25 @@ public class SnakeGame extends JFrame implements Runnable {
     
     @Override
     public void run() {
-        JPanel panel = new JPanel();
-        panel.add(new Window(new Settings()));
-        panel.setBounds(10, 10, 300, 305);
+        Settings s = new Settings();
         
-        add(panel);
+        JPanel p1 = new JPanel();
+        p1.add(new Window(s));
+        p1.setBounds(10, 50, 300, 305);
+        
+        JPanel p2 = new JPanel();
+        p2.add(new ScoreBoard(s));
+        p2.setBounds(10, 10, 300, 40);
+        
+        add(p1);
+        add(p2);
+        
         setLayout(null);
         setTitle("Snake Game");
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
-        setBounds(500, 200, 335, 365);
+        setBounds(500, 200, 335, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
     
