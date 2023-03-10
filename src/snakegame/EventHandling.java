@@ -11,9 +11,13 @@ class EventHandling extends KeyAdapter {
     
     @Override
     public void keyPressed(KeyEvent k) {
-        int key = k.getKeyCode();
+        int keyCode = k.getKeyCode();
+        int keyChar = k.getKeyChar();
         
-        switch(key) {
+        if (keyChar == 'q')
+            s.setInGame(false);
+        
+        switch(keyCode) {
             case KeyEvent.VK_LEFT -> {
                 if(!s.getRightDirection()) {
                     s.setLeftDirection(true);
