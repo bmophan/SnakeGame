@@ -1,8 +1,6 @@
 package snakegame;
 
 import java.awt.Image;
-
-import javax.swing.JLabel;
 import javax.swing.Timer;
 
 class Settings {

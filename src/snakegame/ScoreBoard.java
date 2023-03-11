@@ -1,29 +1,18 @@
 package snakegame;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.Graphics;
-import java.awt.Toolkit;
-
-import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.Border;
 
 class ScoreBoard extends JPanel {
     Settings s;
     JPanel name;
     JPanel value;
-    Border b;
     
     public ScoreBoard(Settings s) {
         this.s = s;
-        
-        setBackground(Color.WHITE);
-        
+        setBackground(Color.red);
         initScoreBoard();
     }
     
@@ -35,7 +24,6 @@ class ScoreBoard extends JPanel {
         JPanel panel = new JPanel();
         
         panel.add(new JLabel("Score:"));
-        panel.setPreferredSize(new Dimension(50, 25));
         
         return panel;
     }
@@ -61,6 +49,4 @@ class ScoreBoard extends JPanel {
         
         return panel;
     }
-    
-    
 }

@@ -3,7 +3,6 @@ package snakegame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -31,7 +30,7 @@ class mainScreen extends JPanel implements ActionListener {
         p2.add(sb);
         
         setLayout(
-                new BoxLayout(this, BoxLayout.Y_AXIS));
+                new BoxLayout(this, BoxLayout.PAGE_AXIS));
         add(p2);
         add(p1);
         
