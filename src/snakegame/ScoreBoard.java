@@ -2,53 +2,64 @@ package snakegame;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Toolkit;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
-class ScoreBoard extends JPanel implements ActionListener {
+class ScoreBoard extends JPanel {
     Settings s;
     JPanel name;
     JPanel value;
-    JLabel label;
+    Border b;
     
     public ScoreBoard(Settings s) {
         this.s = s;
+        
+        setBackground(Color.WHITE);
         
         initScoreBoard();
     }
     
     private void initScoreBoard() {
-        setBackground(Color.WHITE);
-        setFocusable(false);
-        setPreferredSize(new Dimension(s.getWindowWidth(), 40));
-        
-        name = new JPanel();
-        name.add(new JLabel("Score: "));
-        name.setPreferredSize(new Dimension(45, 25));
-        
-        value = new JPanel();
-        value.setPreferredSize(new Dimension(240, 25));
-        label = new JLabel(Integer.toString(s.getScore()));
-        value.add(label);
-        
-        add(name);
-        add(value);
+        add(scoreBoardPanel());
     }
     
-    private void changeScore() {
-        value.remove(label);
-        label = new JLabel(Integer.toString(s.getScore()));
-        value.add(label);
+    private JPanel namePanel() {
+        JPanel panel = new JPanel();
+        
+        panel.add(new JLabel("Score:"));
+        panel.setPreferredSize(new Dimension(50, 25));
+        
+        return panel;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (s.getInGame()) {
-            changeScore();
-        }
-        repaint();
+    
+    private JPanel valuePanel() {
+        JPanel panel = new JPanel();
+        panel.add(new valueScoreBoard(s));
+        
+        return panel;
+    }
+    
+    private JPanel scoreBoardPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        
+        name = namePanel();
+        
+        value = valuePanel();
+        
+        panel.add(name);
+        
+        panel.add(value);
+        
+        return panel;
     }
     
     

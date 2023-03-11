@@ -6,52 +6,27 @@ import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import java.util.Random;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
-class Window extends JPanel implements ActionListener {
+class Window extends JPanel {
     
     Settings s;
     
     public Window(Settings s) {
-        addKeyListener(new EventHandling(s));
         this.s = s;
         
         initWindow(s.getWindowWidth(), s.getWindowHeight());
         AddImage();
-        initGame();
     }
     
     private void initWindow(int W_WIDTH, int W_HEIGHT) {
         setBackground(Color.BLACK);
         setFocusable(true);
         setPreferredSize(new Dimension(W_WIDTH, W_HEIGHT));
-    }
-    
-    private void initGame() {
-        s.setInGame(true);
-        s.setSSpeed(140);
-        s.setScore(0);
-        s.setSLength(3);
-        
-        for (int i = 0; i < s.getSLength(); i++) {
-            s.setX(i, 30 - i * 10);
-            s.setY(i, 100);
-        }
-        
-        s.setLeftDirection(false);
-        s.setRightDirection(true);
-        s.setUpDirection(false);
-        s.setDownDirection(false);
-        
-        locateApple();
-
-        s.setTimer(new Timer(s.getSSpeed(), this));
-        s.getTimer().start();
     }
     
     private void AddImage() {
@@ -110,15 +85,16 @@ class Window extends JPanel implements ActionListener {
         return rd.nextInt(x / 10 - 1) * 10;
     }
     
-    private void locateApple() {
+    public void locateApple() {
         s.setAppleX(RandomLocate(s.getWindowWidth()));
         s.setAppleY(RandomLocate(s.getWindowHeight()));
     }
     
-    private void eatApple() {
+    public void eatApple() {
         if ((s.getX(0) == s.getAppleX()) 
                 && (s.getY(0) == s.getAppleY())) {
             s.setSLength(s.getSLength() + 1);
+            s.setScore(s.getScore() + 1);
             
             do
                 locateApple();
@@ -134,7 +110,7 @@ class Window extends JPanel implements ActionListener {
         return false;
     }
 
-    private void move() {
+    public void move() {
         for (int i = s.getSLength(); i > 0; i--) {
             s.setX(i, s.getX(i - 1));
             s.setY(i, s.getY(i - 1));
@@ -153,7 +129,7 @@ class Window extends JPanel implements ActionListener {
             s.setY(0, s.getY(0) + s.getImageSize());
     }
     
-    private void checkCollision() {
+    public void checkCollision() {
         for (int i = s.getSLength(); i > 3; i--)
             if ((s.getX(0) == s.getX(i)) 
                     && (s.getY(0) == s.getY(i)))
@@ -167,15 +143,5 @@ class Window extends JPanel implements ActionListener {
         
         if (!s.getInGame())
             s.getTimer().stop();
-    }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (s.getInGame()) {
-            
-            eatApple();
-            checkCollision();
-            move();
-        }
-        repaint();
     }
 }
